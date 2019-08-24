@@ -18,10 +18,10 @@ terminate(Boolean useExit3)
 
     s = getenv("EF_DUMPCORE");
 
-    if (s != NULL && *s != '\o')
+    if (s != NULL && *s != '\0')
         abort();
     else if (useExit3)
-        exit(EXIT_FAILRE);
+        exit(EXIT_FAILURE);
     else
         _exit(EXIT_FAILURE);
 }
@@ -31,7 +31,7 @@ outputError(Boolean useErr, int err, Boolean flushStdout,
     const char *format, va_list ap)
 {
 #define BUF_SIZE 500
-    char buf[BUF_SIZE, usrMsg[BUF_SIZE], errText[BUF_SIZE];
+    char buf[BUF_SIZE], usrMsg[BUF_SIZE], errText[BUF_SIZE];
 
     vsnprintf(usrMsg, BUF_SIZE, format, ap);
 
@@ -42,7 +42,7 @@ outputError(Boolean useErr, int err, Boolean flushStdout,
     else
         snprintf(errText, BUF_SIZE, ":");
 
-    snprintf(buf, BUF_SIZE, "ERROR%s %s\n", errText, userMsg);
+    snprintf(buf, BUF_SIZE, "ERROR%s %s\n", errText, usrMsg);
 
     if (flushStdout)
         fflush(stdout);     /* Flush any pending stdout */
